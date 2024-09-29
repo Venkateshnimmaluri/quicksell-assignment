@@ -24,7 +24,7 @@ function App() {
         setUserData(mapUsersByUserId(users));
       })
       .catch(err => { /* Handle error if necessary */ });
-  }, []);
+  }, [loadSettings]);
 
   useEffect(() => {
     if (!tickets.length) return;
@@ -36,13 +36,13 @@ function App() {
     setLoading(true);
     setGrouping(value);
     saveSettings({ grouping: value });
-  }, []);
+  }, [saveSettings]);
 
   const onSetOrdering = useCallback((value) => {
     setLoading(true);
     setOrdering(value);
     saveSettings({ ordering: value });
-  }, []);
+  }, [saveSettings]);
 
   const saveSettings = useCallback((data) => {
     for (let key in data) {

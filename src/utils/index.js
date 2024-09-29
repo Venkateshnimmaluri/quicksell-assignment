@@ -1,4 +1,4 @@
-import { Ticket, User } from "../interfaces";
+//import { Ticket, User } from "../interfaces";
 
 // Function to group tickets by their status
 export const groupTicketsByStatus = (tickets) => {
