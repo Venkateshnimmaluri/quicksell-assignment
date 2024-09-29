@@ -14,6 +14,17 @@ function App() {
   const [ordering, setOrdering] = useState("priority");
   const [loading, setLoading] = useState(true);
 
+  const saveSettings = useCallback((data) => {
+    for (let key in data) {
+      localStorage.setItem(key, data[key]);
+    }
+  }, []);
+
+  const loadSettings = useCallback(() => {
+    setGrouping(localStorage.getItem("grouping") || "status");
+    setOrdering(localStorage.getItem("ordering") || "priority");
+  }, []);
+
   useEffect(() => {
     loadSettings();
     fetch(GET_TICKETS_URL)
@@ -44,16 +55,6 @@ function App() {
     saveSettings({ ordering: value });
   }, [saveSettings]);
 
-  const saveSettings = useCallback((data) => {
-    for (let key in data) {
-      localStorage.setItem(key, data[key]);
-    }
-  }, []);
-
-  const loadSettings = useCallback(() => {
-    setGrouping(localStorage.getItem("grouping") || "status");
-    setOrdering(localStorage.getItem("ordering") || "priority");
-  }, []);
 
   return (
     <div className="App">
